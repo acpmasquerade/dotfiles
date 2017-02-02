@@ -1,0 +1,18 @@
+pyenv_activate() {
+    if [ -z $PYENV_VERSION ]; then
+        export PYENV_PS1_ORI=$PS1
+        pyenv activate $1
+        PS1="($PYENV_VERSION) ${PS1}"
+    else
+        echo "Already active ${PYENV_VERSION}"
+    fi
+}
+
+pyenv_deactivate() {
+    if [ ! -z $PYENV_VERSION ]; then
+      source deactivate $1
+      PS1=$PYENV_PS1_ORI
+    fi
+}
+
+
